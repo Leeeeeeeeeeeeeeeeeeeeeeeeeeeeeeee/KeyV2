@@ -11,6 +11,10 @@ include <./includes.scad>
 // example key
 dcs_row(5) legend("⇪", size=9) key();
 
+
+// example UHK80 key
+uhk80("R3U1") legend("A") key();
+
 // example row
 /* for (x = [0:1:4]) {
   translate_u(0,-x) dcs_row(x) key();
