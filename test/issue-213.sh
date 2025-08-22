@@ -17,9 +17,9 @@ if (legend_text != "") test_key();
 SCAD
 declare -A hashes
 for legend in Enter Escape Tab Shift; do
-  openscad -o "$tmp/$legend.stl" -D "legend_text=\"$legend\"" "$tmp/key_test.scad" >/dev/null 2>&1 || true
-  [ -s "$tmp/$legend.stl" ] || { echo "Failed to generate $legend.stl" >&2; exit 1; }
-  hash=$(sha256sum "$tmp/$legend.stl" | cut -d' ' -f1)
+  openscad -o "$tmp/$legend.csg" -D "legend_text=\"$legend\"" -D '$fn=1' "$tmp/key_test.scad" >/dev/null 2>&1 || true
+  [ -s "$tmp/$legend.csg" ] || { echo "Failed to generate $legend.csg" >&2; exit 1; }
+  hash=$(sha256sum "$tmp/$legend.csg" | cut -d' ' -f1)
   hashes[$hash]=1
 done
 if [ "${#hashes[@]}" -ne 4 ]; then
