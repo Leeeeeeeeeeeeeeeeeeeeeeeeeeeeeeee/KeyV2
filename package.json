@@ -4,7 +4,7 @@
   "description": "automated stl build platform for KeyV2",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "bash test/issue-213.sh"
   },
   "repository": {
     "type": "git",

@@ -262,7 +262,7 @@ module key(inset=false) {
 // actual full key with space carved out and keystem/stabilizer connectors
 // this is an example key with all the fixins from settings.scad
 module example_key(){
-  include <settings.scad>
+  // assumes settings are included by the caller
   key();
 }
 
