@@ -15,6 +15,14 @@ dcs_row(5) legend("⇪", size=9) key();
 // example UHK80 key
 uhk80("R3U1") legend("A") key();
 
+// example arrow cluster from the UHK80 layout
+translate_u(0, 0)    uhk80("R1U1") key();
+translate_u(1, 0)    uhk80("R1U1") key();
+translate_u(2, 0)    uhk80("R2U1") legend("↑") key();
+translate_u(0,-1)    uhk80("R3U1") legend("←") key();
+translate_u(1,-1)    uhk80("R4U1") legend("↓") key();
+translate_u(2,-1)    uhk80("R4XU1") legend("→") key();
+
 // example row
 /* for (x = [0:1:4]) {
   translate_u(0,-x) dcs_row(x) key();

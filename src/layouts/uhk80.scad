@@ -1,16 +1,22 @@
 
 // Generate a single key from the UHK80 layout using a code like "R3U1".
-// The code encodes the profile row (R1..R5) and the key width in units.
+// The code encodes the profile row (R1..R4 plus R4X and R5L) and the key width in units.
 // Example usage:
 //   uhk80("R3U1.25") legend("A") key();
 // This will emit a 1.25u key in row 3 of the selected profile.
 
+// Map row codes to their numeric profile rows.  The UHK80 uses a couple of
+// non-standard rows: R4X (extra sculpted R4) and R5L (low R5 used for the
+// space cluster).  Both of these correspond to the bottom sculpt of row 5 in
+// standard profiles, so we map them accordingly.
 function _uhk80_row(code) =
-    search("R5", code) != [] ? 5 :
-    search("R4", code) != [] ? 4 :
-    search("R3", code) != [] ? 3 :
-    search("R2", code) != [] ? 2 :
-    search("R1", code) != [] ? 1 :
+    search("R5L", code) != [] ? 5 :
+    search("R4X", code) != [] ? 5 :
+    search("R5",  code) != [] ? 5 :
+    search("R4",  code) != [] ? 4 :
+    search("R3",  code) != [] ? 3 :
+    search("R2",  code) != [] ? 2 :
+    search("R1",  code) != [] ? 1 :
     0;
 
 function _uhk80_width(code) =
