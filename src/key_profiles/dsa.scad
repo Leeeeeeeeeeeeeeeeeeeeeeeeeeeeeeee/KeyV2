@@ -1,5 +1,4 @@
 use <../functions.scad>
-include <../settings.scad>
 
 module dsa_row(row=3, column = 0) {
   $key_shape_type = "sculpted_square";

@@ -1,5 +1,4 @@
 use <../functions.scad>
-include <../settings.scad>
 
 // based off GMK keycap set
 
