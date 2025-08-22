@@ -1,5 +1,4 @@
 include <constants.scad>
-include <settings.scad>
 
 // I use functions when I need to compute special variables off of other special variables
 // functions need to be explicitly included, unlike special variables, which
