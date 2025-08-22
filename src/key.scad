@@ -266,6 +266,10 @@ module example_key(){
   key();
 }
 
-if (!$using_customizer) {
+// `$using_customizer` is defined when the file is included from the
+// Customizer interface.  When running the file directly the variable is
+// undefined which previously triggered a warning.  Check with `is_undef()`
+// so the example key renders cleanly in both scenarios.
+if (is_undef($using_customizer) || !$using_customizer) {
   example_key();
 }

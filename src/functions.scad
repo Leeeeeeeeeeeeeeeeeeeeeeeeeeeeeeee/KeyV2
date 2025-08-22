@@ -26,7 +26,18 @@ function cherry_cross(slop, extra_vertical = 0) = [
 
 // TODO add side_sculpting
 function key_width_at_progress(progress = 0) = $bottom_key_width + ($unit * ($key_length - 1)) - $width_difference;
-function key_height_at_progress(progress = 0) = $bottom_key_height + ($unit * ($key_height - 1)) - $height_difference + $side_sculpting(progress);
+// NOTE:
+// OpenSCAD special variables (prefixed with `$`) cannot be invoked as
+// functions directly.  The previous implementation attempted to call the
+// dynamically-scoped variable `$side_sculpting` as a function which
+// triggered warnings such as "Can't call function on dynamically scoped
+// variable" and produced `undef` values downstream.  To preserve the
+// ability to override `$side_sculpting` from key profile files while
+// avoiding these warnings, copy the variable into a locally scoped
+// identifier before invoking it.
+function key_height_at_progress(progress = 0) =
+  let(side_fn = $side_sculpting)
+    $bottom_key_height + ($unit * ($key_height - 1)) - $height_difference + side_fn(progress);
 
 // actual mm key width and height
 function total_key_width(delta = 0) = $bottom_key_width + $unit * ($key_length - 1) - delta;
