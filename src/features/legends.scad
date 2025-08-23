@@ -2,10 +2,10 @@ module keytext(text, position, font_size, depth) {
   woffset = (top_total_key_width()/3.5) * position[0];
   hoffset = (top_total_key_height()/3.5) * -position[1];
 
-  // When legends are outset we want the geometry to run through the
-  // entire key so it can be printed in a different material.
-  z_offset = $outset_legends ? -$total_depth : -depth;
-  extrude_height = $outset_legends ? $total_depth + $dish_depth : $dish_depth + depth;
+  // When legends are outset, only extend just through the key top
+  // so the text breaks the surface without reaching the bottom.
+  z_offset = $outset_legends ? -$keytop_thickness : -depth;
+  extrude_height = $outset_legends ? $keytop_thickness + $dish_depth : $dish_depth + depth;
 
   translate([woffset, hoffset, z_offset]) {
     color($tertiary_color) linear_extrude(height=extrude_height) {
