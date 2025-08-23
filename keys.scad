@@ -6,10 +6,14 @@
 // special variables, but that's a limitation of SCAD we have to work around
 
 include <./includes.scad>
+include <./uhk80.scad>
 
 
-// example key
-dcs_row(5) legend("⇪", size=9) key();
+// example arrow keys
+translate_u(0,0) R4XU1() legend("←") key();
+translate_u(1,0) R4XU1() legend("↓") key();
+translate_u(2,0) R4XU1() legend("→") key();
+translate_u(1,1) R4U1() legend("↑") key();
 
 // example row
 /* for (x = [0:1:4]) {
