@@ -8,6 +8,7 @@
 include <./includes.scad>
 include <./uhk80.scad>
 
+$font_size = 4; // Font size for legends
 $outset_legends = true;
 $support_type = "disable";
 $stem_support_type = "disable";
