@@ -205,6 +205,7 @@ module inside_features() {
   if ($stem_inset >= 0) stems_and_stabilizers();
   if ($support_type != "disable") translate([0, 0, $stem_inset]) support_for($stem_positions, $stem_type);
   if ($stabilizer_type != "disable") translate([0, 0, $stem_inset]) support_for($stabilizers, $stabilizer_type);
+  if ($outset_legends && len($legends) > 0) legends(0);
 }
 
 // all stems and stabilizers
