@@ -1,8 +1,14 @@
 module keytext(text, position, font_size, depth) {
   woffset = (top_total_key_width()/3.5) * position[0];
   hoffset = (top_total_key_height()/3.5) * -position[1];
-  translate([woffset, hoffset, -depth]){
-    color($tertiary_color) linear_extrude(height=$dish_depth + depth){
+
+  // When legends are outset we want the geometry to run through the
+  // entire key so it can be printed in a different material.
+  z_offset = $outset_legends ? -$total_depth : -depth;
+  extrude_height = $outset_legends ? $total_depth + $dish_depth : $dish_depth + depth;
+
+  translate([woffset, hoffset, z_offset]) {
+    color($tertiary_color) linear_extrude(height=extrude_height) {
       text(text=text, font=$font, size=font_size, halign="center", valign="center");
     }
   }

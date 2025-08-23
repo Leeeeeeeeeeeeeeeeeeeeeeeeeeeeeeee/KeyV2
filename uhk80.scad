@@ -70,15 +70,3 @@ module R5U2_25() { _uhk80_key(5,2.25) children(); }
 module R5U2_75() { _uhk80_key(5,2.75) children(); }
 module R5U6_25() { _uhk80_key(5,6.25) children(); }
 
-// crude full-keyboard helper – uses 60% layout plus arrow cluster
-// TODO: replace with exact UHK80 positions once available
-module uhk80_keyboard(profile="dcs") {
-  layout(60_percent_default_layout, profile) children();
-
-  // arrow cluster to the right of the main block
-  translate_u(15,0) R4XU1() children();
-  translate_u(16,0) R4XU1() children();
-  translate_u(17,0) R4XU1() children();
-  translate_u(16,1) R4U1() children();
-}
-

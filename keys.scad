@@ -8,14 +8,13 @@
 include <./includes.scad>
 include <./uhk80.scad>
 
+$outset_legends = true;
+$support_type = "disable";
+$stem_support_type = "disable";
+$stabilizer_type = "disable";
 
-// render the full keyboard
-uhk80_keyboard() key();
-
-// example row
-/* for (x = [0:1:4]) {
-  translate_u(0,-x) dcs_row(x) key();
-} */
-
-// example layout
-/* preonic_default("dcs") key(); */
+// arrow key cluster with raised legends
+R4XU1() legend("←") key();
+translate_u(1,0) R4XU1() legend("↓") key();
+translate_u(2,0) R4XU1() legend("→") key();
+translate_u(1,1) R4U1() legend("↑") key();
