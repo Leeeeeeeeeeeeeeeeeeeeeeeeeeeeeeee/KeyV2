@@ -18,4 +18,4 @@ $stabilizer_type = "disable";
 R4XU1() legend("←") key();
 translate_u(1,0) R4XU1() legend("↓") key();
 translate_u(2,0) R4XU1() legend("→") key();
-translate_u(1,1) R4U1() legend("↑") key();
+translate_u(1,1.5) R4U1() legend("↑") key();
