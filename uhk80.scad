@@ -5,12 +5,15 @@
 
 include <./includes.scad>;
 
-// Default key height for UHK80 keys (50% taller than standard)
-$uhk80_key_height = 1.5;
+// Default vertical depth multiplier for UHK80 keys (50% taller than standard)
+$uhk80_depth_scale = 1.5;
 
-// Internal helper for applying row profile, unit width, and height
+// Internal helper for applying row profile, unit width, and depth scaling
 module _uhk80_key(row, u) {
-  dcs_row(row) u(u) uh($uhk80_key_height) children();
+  dcs_row(row) u(u) {
+    $total_depth = $total_depth * $uhk80_depth_scale;
+    children();
+  }
 }
 
 // Row 1
