@@ -8,14 +8,9 @@
 include <./includes.scad>
 include <./uhk80.scad>
 
-$font_size = 4; // Font size for legends
-$outset_legends = true;
-$support_type = "disable";
-$stem_support_type = "disable";
-$stabilizer_type = "disable";
-
 // arrow key cluster with raised legends
-R4XU1() legend("←") key();
-translate_u(1,0) R4XU1() legend("↓") key();
-translate_u(2,0) R4XU1() legend("→") key();
+R4U1() legend("←") key();
+translate_u(1,0) R4U1() legend("↓") key();
+translate_u(2,0) R4U1() legend("→") key();
 translate_u(1,1) R4U1() legend("↑") key();
+translate_u(2,2) R4U1_25() legend("Mod") key();
