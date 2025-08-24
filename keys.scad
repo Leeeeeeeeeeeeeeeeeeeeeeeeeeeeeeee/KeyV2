@@ -8,9 +8,8 @@
 include <./includes.scad>
 include <./uhk80.scad>
 
-// arrow key cluster with raised legends
-R4U1() legend("←") key();
-translate_u(1,0) R4U1() legend("↓") key();
-translate_u(2,0) R4U1() legend("→") key();
-translate_u(1,1) R4U1() legend("↑") key();
-translate_u(2,2) R4U1_25() legend("Mod") key();
+// Generate UHK80 layout halves
+// Examples:
+// uhk80_half("left");   // left side only
+// uhk80_half("right");  // right side only
+uhk80_half("both");      // render both halves
