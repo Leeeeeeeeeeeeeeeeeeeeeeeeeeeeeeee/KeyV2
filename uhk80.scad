@@ -13,14 +13,25 @@ $stem_support_type = "disable";
 $stabilizer_type = "disable";
 
 // Default vertical depth multiplier for UHK80 keys (50% taller than standard)
-$uhk80_depth_scale = 1.6;
+$uhk80_depth_scale = 1.5;
+
+// Default top dish depth controlling curvature (higher values curve more)
+$uhk80_dish_depth = 0.75;
+
+// Additional forward tilt in degrees; negative tilts top downward more
+$uhk80_tilt_adjust = -2;
 
 // Internal helper for applying row profile, unit width, and depth scaling
 module _uhk80_key(row, u) {
-  dcs_row(row) u(u) {
-    $total_depth = $total_depth * $uhk80_depth_scale;
-    children();
-  }
+  let($dish_depth_override = $uhk80_dish_depth)
+    dcs_row(row) u(u) {
+      let(
+        extra_depth = $total_depth * ($uhk80_depth_scale - 1),
+        $stem_inset = $stem_inset + extra_depth,
+        $total_depth = $total_depth * $uhk80_depth_scale,
+        $top_tilt = $top_tilt + $uhk80_tilt_adjust
+      ) children();
+    }
 }
 
 // Row 1
