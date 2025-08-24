@@ -5,9 +5,22 @@
 
 include <./includes.scad>;
 
-// Internal helper for applying row profile and unit width
+// Defaults for UHK80 keys
+$font_size = 4; // Font size for legends
+$outset_legends = true;
+$support_type = "disable";
+$stem_support_type = "disable";
+$stabilizer_type = "disable";
+
+// Default vertical depth multiplier for UHK80 keys (50% taller than standard)
+$uhk80_depth_scale = 1.6;
+
+// Internal helper for applying row profile, unit width, and depth scaling
 module _uhk80_key(row, u) {
-  dcs_row(row) u(u) children();
+  dcs_row(row) u(u) {
+    $total_depth = $total_depth * $uhk80_depth_scale;
+    children();
+  }
 }
 
 // Row 1
