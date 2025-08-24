@@ -13,10 +13,10 @@ $stem_support_type = "disable";
 $stabilizer_type = "disable";
 
 // Default vertical depth multiplier for UHK80 keys (50% taller than standard)
-$uhk80_depth_scale = 1.6;
+$uhk80_depth_scale = 1.5;
 
 // Default top dish depth controlling curvature (higher values curve more)
-$uhk80_dish_depth = 0.5;
+$uhk80_dish_depth = 0.75;
 
 // Additional forward tilt in degrees; negative tilts top downward more
 $uhk80_tilt_adjust = -2;
