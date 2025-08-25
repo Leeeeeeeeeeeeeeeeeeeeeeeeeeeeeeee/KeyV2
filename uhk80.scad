@@ -185,9 +185,14 @@ module uhk80_half(side="both", rows=undef, gap=0.5) {
   if (side == "left" || side == "both")
     _uhk80_render_half(uhk80_left_rows, rows);
   if (side == "right" || side == "both") {
+    selected_rows = rows == undef
+        ? uhk80_right_rows
+        : [for (i = [0 : len(uhk80_right_rows) - 1])
+             if (rows == i + 1 || (is_list(rows) && len([for (r = rows) if (r == i + 1) r]) > 0))
+               uhk80_right_rows[i]];
     right_end = side == "both"
         ? 17
-        : max([for (row = uhk80_right_rows) sum([for (k = row) k[1]])]);
+        : max([for (row = selected_rows) sum([for (k = row) k[1]])]);
     translate_u(side == "both" ? gap : 0) {
       _uhk80_render_half(
         uhk80_right_rows,
@@ -198,7 +203,7 @@ module uhk80_half(side="both", rows=undef, gap=0.5) {
 
       // Arrow up key sits above the arrow cluster; render when row 3 is included
       if (rows == undef || rows == 3 || (is_list(rows) && len([for (r = rows) if (r == 3) r]) > 0))
-        translate_u(right_end - 1, -2)
+        translate_u(right_end - 2, -2)
           _uhk80_key(3, 1) legend("\u2191") key();
     }
   }
