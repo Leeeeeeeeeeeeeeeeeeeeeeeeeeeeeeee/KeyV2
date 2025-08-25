@@ -201,8 +201,8 @@ module uhk80_half(side="both", rows=undef, gap=0.5) {
         align_right=true
       );
 
-      // Arrow up key sits above the arrow cluster; render when row 3 is included
-      if (rows == undef || rows == 3 || (is_list(rows) && len([for (r = rows) if (r == 3) r]) > 0))
+      // Arrow up key sits above the arrow cluster; render when row 4 is included
+      if (rows == undef || rows == 4 || (is_list(rows) && len([for (r = rows) if (r == 4) r]) > 0))
         translate_u(right_end - 2, -2)
           _uhk80_key(3, 1) legend("\u2191") key();
     }
@@ -239,5 +239,5 @@ module _uhk80_render_half(rows_data, rows=undef, end_column=undef, align_right=f
   }
 }
 
-// Example: render both halves
-uhk80_half("both");
+// Example: render the right half
+uhk80_half("right");
