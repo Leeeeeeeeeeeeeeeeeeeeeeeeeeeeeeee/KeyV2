@@ -214,4 +214,16 @@ module _uhk80_render_half(keys) {
       _uhk80_key(k[0], k[1]) legend(k[2], size=k[5]) key();
 }
 
+// Render a single row of the right half using cumulative widths
+module uhk80_right_row(row_data, offset=0, y=0) {
+  for (i = [0:len(row_data)-1]) {
+    key = row_data[i];
+    width = key[1];
+    x_offset = offset + (i > 0 ? sum([for (j = [0:i-1]) row_data[j][1]]) : 0);
+    font_size = (len(key) > 3) ? key[3] : undef;
+    translate_u(x_offset, y)
+      _uhk80_key(key[0], width) legend(key[2], size=font_size) key();
+  }
+}
+
 uhk80_half("right");
