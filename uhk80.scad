@@ -184,24 +184,31 @@ uhk80_right_rows = [
 module uhk80_half(side="both", rows=undef, gap=0.5) {
   if (side == "left" || side == "both")
     _uhk80_render_half(uhk80_left_rows, rows);
-  if (side == "right" || side == "both")
+  if (side == "right" || side == "both") {
+    right_end = side == "both"
+        ? 17
+        : max([for (row = uhk80_right_rows) sum([for (k = row) k[1]])]);
     translate_u(side == "both" ? gap : 0) {
       _uhk80_render_half(
         uhk80_right_rows,
         rows,
-        end_column=17,
+        end_column=right_end,
         align_right=true
       );
 
       // Arrow up key sits above the arrow cluster; render when row 3 is included
       if (rows == undef || rows == 3 || (is_list(rows) && len([for (r = rows) if (r == 3) r]) > 0))
-        translate_u(16, -2)
+        translate_u(right_end - 1, -2)
           _uhk80_key(3, 1) legend("\u2191") key();
     }
+  }
 }
 
 // Internal: render rows of keys using _uhk80_key
 module _uhk80_render_half(rows_data, rows=undef, end_column=undef, align_right=false, starts=0) {
+  end_col = align_right && end_column == undef
+      ? max([for (row = rows_data) sum([for (k = row) k[1]])])
+      : end_column;
   for (i = [0 : len(rows_data) - 1]) {
     row_number = i + 1;
     if (rows == undef || row_number == rows || (is_list(rows) && len([for (r = rows) if (r == row_number) r]) > 0)) {
@@ -213,9 +220,8 @@ module _uhk80_render_half(rows_data, rows=undef, end_column=undef, align_right=f
           ? (i < len(starts) ? starts[i] : 0)
           : starts;
       total_width = sum([for (k = row) k[1]]);
-      last_width = row[len(row) - 1][1];
-      x = align && end_column != undef
-          ? end_column - (total_width - last_width)
+      x = align && end_col != undef
+          ? end_col - total_width
           : start;
       for (key = row) {
         width = key[1];
