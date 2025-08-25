@@ -183,14 +183,19 @@ uhk80_right_rows = [
 // offset: horizontal shift applied before placing the first key
 module uhk80_right_row(row = 1, offset = 0) {
   row_data = uhk80_right_rows[row - 1];
-  x = offset;
-  for (key = row_data) {
+  _uhk80_render_right_row(row_data, row, offset);
+}
+
+// Recursively render each key in a right-half row without mutating state.
+module _uhk80_render_right_row(row_data, row, x) {
+  if (len(row_data) > 0) {
+    key = row_data[0];
     width = key[1];
     if (len(key) > 2)
       translate_u(x, -(row - 1))
         _uhk80_key(key[0], width)
           legend(key[2], size = len(key) > 3 ? key[3] : 4) key();
-    x = x + width;
+    _uhk80_render_right_row(row_data[1:len(row_data)-1], row, x + width);
   }
 }
 
