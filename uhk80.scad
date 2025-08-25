@@ -95,123 +95,138 @@ module R5U2_75() { _uhk80_key(5,2.75) children(); }
 module R5U6_25() { _uhk80_key(5,6.25) children(); }
 
 // Layout data for UHK80 halves
-// Each entry: [row (R value), unit width (U value), legend, x position, y position, font size]
-uhk80_left_layout = [
-  [1, 1, "Esc", 0, 0, 4],
-  [1, 1, "F1", 1, 0, 3],
-  [1, 1, "F2", 2, 0, 3],
-  [1, 1, "F3", 3, 0, 3],
-  [1, 1, "F4", 4, 0, 3],
-  [1, 1, "F5", 5, 0, 3],
-  [1, 1, "F6", 6, 0, 3],
+// Row numbers start at the top: row 1 is the F1/F7 row for left/right halves
 
-  [2, 1, "1", 0, -1, 4],
-  [2, 1, "2", 1, -1, 4],
-  [2, 1, "3", 2, -1, 4],
-  [2, 1, "4", 3, -1, 4],
-  [2, 1, "5", 4, -1, 4],
-  [2, 1, "6", 5, -1, 4],
-
-  [3, 1.5, "Tab", 0, -2, 4],
-  [3, 1, "Q", 1.5, -2, 4],
-  [3, 1, "W", 2.5, -2, 4],
-  [3, 1, "E", 3.5, -2, 4],
-  [3, 1, "R", 4.5, -2, 4],
-  [3, 1, "T", 5.5, -2, 4],
-
-  [4, 1.75, "Caps", 0, -3, 4],
-  [4, 1, "A", 1.75, -3, 4],
-  [4, 1, "S", 2.75, -3, 4],
-  [4, 1, "D", 3.75, -3, 4],
-  [4, 1, "F", 4.75, -3, 4],
-  [4, 1, "G", 5.75, -3, 4],
-
-  [5, 1.25, "Shift", 0, -4, 4],
-  [5, 1, "Z", 1.25, -4, 4],
-  [5, 1, "X", 2.25, -4, 4],
-  [5, 1, "C", 3.25, -4, 4],
-  [5, 1, "V", 4.25, -4, 4],
-  [5, 1, "B", 5.25, -4, 4],
-
-  [5, 1.25, "Ctrl", 0, -5, 4],
-  [5, 1.25, "Super", 1.25, -5, 4],
-  [5, 1.25, "Alt", 2.5, -5, 4],
-  [5, 2.25, "Space", 3.75, -5, 4]
+// Left half rows: [ [row, width, legend, (optional) font size], ... ]
+uhk80_left_rows = [
+  // Row 1
+  [
+    [1, 1, "Esc"],
+    [1, 1, "F1", 3],
+    [1, 1, "F2", 3],
+    [1, 1, "F3", 3],
+    [1, 1, "F4", 3],
+    [1, 1, "F5", 3],
+    [1, 1, "F6", 3]
+  ],
+  // Row 2
+  [
+    [2, 1, "1"], [2, 1, "2"], [2, 1, "3"],
+    [2, 1, "4"], [2, 1, "5"], [2, 1, "6"]
+  ],
+  // Row 3
+  [
+    [3, 1.5, "Tab"], [3, 1, "Q"], [3, 1, "W"],
+    [3, 1, "E"], [3, 1, "R"], [3, 1, "T"]
+  ],
+  // Row 4
+  [
+    [4, 1.75, "Caps"], [4, 1, "A"], [4, 1, "S"],
+    [4, 1, "D"], [4, 1, "F"], [4, 1, "G"]
+  ],
+  // Row 5
+  [
+    [5, 1.25, "Shift"], [5, 1, "Z"], [5, 1, "X"],
+    [5, 1, "C"], [5, 1, "V"], [5, 1, "B"]
+  ],
+  // Row 6 (bottom)
+  [
+    [5, 1.25, "Ctrl"], [5, 1.25, "Super"],
+    [5, 1.25, "Alt"], [5, 2.25, "Space"]
+  ]
 ];
 
-uhk80_right_layout = [
-  [1, 1, "F7", 7, 0, 3],
-  [1, 1, "F8", 8, 0, 3],
-  [1, 1, "F9", 9, 0, 3],
-  [1, 1, "F10", 10, 0, 3],
-  [1, 1, "F11", 11, 0, 3],
-  [1, 1, "F12", 12, 0, 3],
-  [1, 1.5, "PrtSc", 13, 0, 3],
-  [1, 1, "Scroll", 14.5, 0, 3],
-  [1, 1, "Pause", 15.5, 0, 3],
-
-  [2, 1, "7", 7, -1, 4],
-  [2, 1, "8", 8, -1, 4],
-  [2, 1, "9", 9, -1, 4],
-  [2, 1, "0", 10, -1, 4],
-  [2, 1, "-", 11, -1, 4],
-  [2, 1, "=", 12, -1, 4],
-  [1, 1.5, "Backspace", 13, -1, 4],
-  [1, 1, "Insert", 15, -1, 4],
-  [1, 1, "Home", 16, -1, 4],
-  [1, 1, "PgUp", 17, -1, 4],
-
-  [3, 1, "Y", 7, -2, 4],
-  [3, 1, "U", 8, -2, 4],
-  [3, 1, "I", 9, -2, 4],
-  [3, 1, "O", 10, -2, 4],
-  [3, 1, "P", 11, -2, 4],
-  [3, 1, "[", 12, -2, 4],
-  [3, 1, "]", 13, -2, 4],
-  [3, 1, "\\", 14, -2, 4],
-  [2, 1, "Delete", 15, -2, 4],
-  [2, 1, "End", 16, -2, 4],
-  [2, 1, "PgDn", 17, -2, 4],
-  [3, 1, "\u2191", 16, -2, 4],
-
-  [4, 1, "H", 7, -3, 4],
-  [4, 1, "J", 8, -3, 4],
-  [4, 1, "K", 9, -3, 4],
-  [4, 1, "L", 10, -3, 4],
-  [4, 1, ";", 11, -3, 4],
-  [4, 1, "'", 12, -3, 4],
-  [4, 2.25, "Enter", 13, -3, 4],
-  [4, 1, "\u2190", 15, -3, 4],
-  [4, 1, "\u2193", 16, -3, 4],
-  [4, 1, "\u2192", 17, -3, 4],
-
-  [5, 1, "N", 7, -4, 4],
-  [5, 1, "M", 8, -4, 4],
-  [5, 1, ",", 9, -4, 4],
-  [5, 1, ".", 10, -4, 4],
-  [5, 1, "/", 11, -4, 4],
-  [5, 2.75, "Shift", 12, -4, 4],
-
-  [5, 2.25, "Space", 7, -5, 4],
-  [5, 1.25, "Alt", 9.25, -5, 4],
-  [5, 1.25, "Fn", 10.5, -5, 4],
-  [5, 1.25, "Ctrl", 11.75, -5, 4]
+// Right half rows
+uhk80_right_rows = [
+  // Row 1
+  [
+    [1, 1, "F7", 3], [1, 1, "F8", 3], [1, 1, "F9", 3],
+    [1, 1, "F10", 3], [1, 1, "F11", 3], [1, 1, "F12", 3],
+    [0, 1.5],
+    [1, 1.5, "PrtSc", 3], [1, 1, "Scroll", 3], [1, 1, "Pause", 3]
+  ],
+  // Row 2
+  [
+    [2, 1, "7"], [2, 1, "8"], [2, 1, "9"],
+    [2, 1, "0"], [2, 1, "-"], [2, 1, "="],
+    [1, 1.5, "Backspace"], [0, 0.5],
+    [1, 1, "Insert"], [1, 1, "Home"], [1, 1, "PgUp"]
+  ],
+  // Row 3
+  [
+    [3, 1, "Y"], [3, 1, "U"], [3, 1, "I"],
+    [3, 1, "O"], [3, 1, "P"], [3, 1, "["],
+    [3, 1, "]"], [3, 1, "\\"],
+    [2, 1, "Delete"], [2, 1, "End"], [2, 1, "PgDn"]
+  ],
+  // Row 4
+  [
+    [4, 1, "H"], [4, 1, "J"], [4, 1, "K"],
+    [4, 1, "L"], [4, 1, ";"], [4, 1, "'"],
+    [4, 2.25, "Enter"], [0, 0.75],
+    [4, 1, "\u2190"], [4, 1, "\u2193"], [4, 1, "\u2192"]
+  ],
+  // Row 5
+  [
+    [5, 1, "N"], [5, 1, "M"], [5, 1, ","],
+    [5, 1, "."], [5, 1, "/"], [5, 2.75, "Shift"]
+  ],
+  // Row 6 (bottom)
+  [
+    [5, 2.25, "Space"], [5, 1.25, "Alt"],
+    [5, 1.25, "Fn"], [5, 1.25, "Ctrl"]
+  ]
 ];
 
 // Render selected half of the UHK80 layout
 // side can be "left", "right", or "both"
-module uhk80_half(side="both") {
+// rows can be an integer or vector of integers to render only specific rows
+module uhk80_half(side="both", rows=undef, gap=0.5) {
   if (side == "left" || side == "both")
-    _uhk80_render_half(uhk80_left_layout);
+    _uhk80_render_half(uhk80_left_rows, rows);
   if (side == "right" || side == "both")
-    _uhk80_render_half(uhk80_right_layout);
+    translate_u(side == "both" ? gap : 0) {
+      _uhk80_render_half(
+        uhk80_right_rows,
+        rows,
+        end_column=17,
+        align_right=true
+      );
+
+      // Arrow up key sits above the arrow cluster; render when row 3 is included
+      if (rows == undef || rows == 3 || (is_list(rows) && len([for (r = rows) if (r == 3) r]) > 0))
+        translate_u(16, -2)
+          _uhk80_key(3, 1) legend("\u2191") key();
+    }
 }
 
-// Internal: render a list of keys using _uhk80_key
-module _uhk80_render_half(keys) {
-  for (k = keys)
-    translate_u(k[3], k[4])
-      _uhk80_key(k[0], k[1]) legend(k[2], size=k[5]) key();
+// Internal: render rows of keys using _uhk80_key
+module _uhk80_render_half(rows_data, rows=undef, end_column=undef, align_right=false, starts=0) {
+  for (i = [0 : len(rows_data) - 1]) {
+    row_number = i + 1;
+    if (rows == undef || row_number == rows || (is_list(rows) && len([for (r = rows) if (r == row_number) r]) > 0)) {
+      row = rows_data[i];
+      align = is_list(align_right)
+          ? (i < len(align_right) ? align_right[i] : false)
+          : align_right;
+      start = is_list(starts)
+          ? (i < len(starts) ? starts[i] : 0)
+          : starts;
+      total_width = sum([for (k = row) k[1]]);
+      last_width = row[len(row) - 1][1];
+      x = align && end_column != undef
+          ? end_column - (total_width - last_width)
+          : start;
+      for (key = row) {
+        width = key[1];
+        if (len(key) > 2)
+          translate_u(x, -i)
+            _uhk80_key(key[0], width) legend(key[2], size = len(key) > 3 ? key[3] : 4) key();
+        x = x + width;
+      }
+    }
+  }
 }
 
-uhk80_half("right");
+// Example: render both halves
+uhk80_half("both");
