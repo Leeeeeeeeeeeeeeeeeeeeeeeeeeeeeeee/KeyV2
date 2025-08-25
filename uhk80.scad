@@ -214,3 +214,4 @@ module _uhk80_render_half(keys) {
       _uhk80_key(k[0], k[1]) legend(k[2], size=k[5]) key();
 }
 
+uhk80_half("right");

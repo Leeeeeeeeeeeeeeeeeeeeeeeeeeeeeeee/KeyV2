@@ -12,4 +12,4 @@ include <./uhk80.scad>
 // Examples:
 // uhk80_half("left");   // left side only
 // uhk80_half("right");  // right side only
-uhk80_half("both");      // render both halves
+uhk80_half("right");      // render both halves
