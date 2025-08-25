@@ -178,66 +178,21 @@ uhk80_right_rows = [
   ]
 ];
 
-// Render selected half of the UHK80 layout
-// side can be "left", "right", or "both"
-// rows can be an integer or vector of integers to render only specific rows
-module uhk80_half(side="both", rows=undef, gap=0.5) {
-  if (side == "left" || side == "both")
-    _uhk80_render_half(uhk80_left_rows, rows);
-  if (side == "right" || side == "both") {
-    selected_rows = rows == undef
-        ? uhk80_right_rows
-        : [for (i = [0 : len(uhk80_right_rows) - 1])
-             if (rows == i + 1 || (is_list(rows) && len([for (r = rows) if (r == i + 1) r]) > 0))
-               uhk80_right_rows[i]];
-    right_end = side == "both"
-        ? 17
-        : max([for (row = selected_rows) sum([for (k = row) k[1]])]);
-    translate_u(side == "both" ? gap : 0) {
-      _uhk80_render_half(
-        uhk80_right_rows,
-        rows,
-        end_column=right_end,
-        align_right=true
-      );
-
-      // Arrow up key sits above the arrow cluster; render when row 4 is included
-      if (rows == undef || rows == 4 || (is_list(rows) && len([for (r = rows) if (r == 4) r]) > 0))
-        translate_u(right_end - 2, -2)
-          _uhk80_key(3, 1) legend("\u2191") key();
-    }
+// Render a single row from the right half of the layout.
+// row: row number starting at the top (1 = F7 row)
+// offset: horizontal shift applied before placing the first key
+module uhk80_right_row(row = 1, offset = 0) {
+  row_data = uhk80_right_rows[row - 1];
+  x = offset;
+  for (key = row_data) {
+    width = key[1];
+    if (len(key) > 2)
+      translate_u(x, -(row - 1))
+        _uhk80_key(key[0], width)
+          legend(key[2], size = len(key) > 3 ? key[3] : 4) key();
+    x = x + width;
   }
 }
 
-// Internal: render rows of keys using _uhk80_key
-module _uhk80_render_half(rows_data, rows=undef, end_column=undef, align_right=false, starts=0) {
-  end_col = align_right && end_column == undef
-      ? max([for (row = rows_data) sum([for (k = row) k[1]])])
-      : end_column;
-  for (i = [0 : len(rows_data) - 1]) {
-    row_number = i + 1;
-    if (rows == undef || row_number == rows || (is_list(rows) && len([for (r = rows) if (r == row_number) r]) > 0)) {
-      row = rows_data[i];
-      align = is_list(align_right)
-          ? (i < len(align_right) ? align_right[i] : false)
-          : align_right;
-      start = is_list(starts)
-          ? (i < len(starts) ? starts[i] : 0)
-          : starts;
-      total_width = sum([for (k = row) k[1]]);
-      x = align && end_col != undef
-          ? end_col - total_width
-          : start;
-      for (key = row) {
-        width = key[1];
-        if (len(key) > 2)
-          translate_u(x, -i)
-            _uhk80_key(key[0], width) legend(key[2], size = len(key) > 3 ? key[3] : 4) key();
-        x = x + width;
-      }
-    }
-  }
-}
-
-// Example: render the right half
-uhk80_half("right");
+// Example: render only row 1 of the right half
+uhk80_right_row(1);
