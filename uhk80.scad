@@ -147,7 +147,7 @@ uhk80_right_layout = [
   [1, 1, "F11", 11, 0, 3],
   [1, 1, "F12", 12, 0, 3],
   // Top-right cluster: Print (wider), ScrLk, Pause
-  [1, 2, "Print", 13.25, 0, 3],
+  [1, 2, "Print", 13.6, 0, 3],
   [1, 1, "ScrLk", 15, 0, 3],
   [1, 1, "Pause", 16, 0, 3],
 
@@ -158,7 +158,7 @@ uhk80_right_layout = [
   [2, 1, "-", 11, -1, 4],
   [2, 1, "=", 12, -1, 4],
   // Number row right side: Backspace (2u), then Ins/Del aligned under ScrLk/Pause
-  [1, 2, "Backspace", 13.25, -1, 4],
+  [1, 2, "Backspace", 13.6, -1, 4],
   [1, 1, "Ins", 15, -1, 4],
   [1, 1, "Del", 16, -1, 4],
 
