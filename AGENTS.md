@@ -34,6 +34,10 @@
 - PRs: Include purpose, before/after screenshots or renders, reproduction steps (OpenSCAD line snippet), and any default changes to `keys.scad`/settings. Link related issues.
 - CI: None. Please verify locally (GUI preview + STL render) before requesting review.
 
+## Repository Scope
+- Fork‑only workflow: this fork is the canonical repo. Ignore upstream; do not open PRs or push there.
+- Push target: use `origin` only. I will confirm with prompts like “push now?” before publishing.
+
 ## Security & Environment Tips
 - Use a recent OpenSCAD (dev snapshot recommended for features/perf).
 - Node/Gulp are only for auto‑compiles; OpenSCAD CLI/GUI is the source of truth.
