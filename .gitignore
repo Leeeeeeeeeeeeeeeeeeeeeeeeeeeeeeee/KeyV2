@@ -1,3 +1,5 @@
 node_modules/
 *.scad.stl
 models/*
+.DS_Store
+DS_STORE

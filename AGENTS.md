@@ -5,7 +5,7 @@
 - `uhk80.scad`: Customization layer where we define UHK80‑specific rows, R values, U widths, legends, and defaults. Most changes happen here (often assisted by AI).
 - `keys.scad`: Driver that calls into `uhk80.scad` to render a specific key, row, or the full set for preview/print.
 - `src/`: Core OpenSCAD library (shapes, stems, dishes, layouts, profiles). Use `src/key.scad` and `src/settings.scad` when extending base behavior.
-- Reference images: `layout.png` (legend map + physical layout), `uhk80-keycap-profiles.png` (side profiles and R values like R1, R4X), `uhk80-layout-iso.png` (per‑key R and U values).
+- Reference images: `layout.png` (legend map + physical layout), `uhk80-keycap-profiles.png` (side profiles and R values like R1, R4X), `uhk80-layout-iso.png` (per‑key R and U values). Split left/right layout images are available to focus edits on one half.
 - Outputs: CLI/gulp writes `.stl` next to the source `.scad` (e.g., `keys.scad.stl`).
 
 ## Build, Test, and Development Commands
@@ -24,6 +24,7 @@
 ## Testing Guidelines
 - Visual: Open `keys.scad` to preview rows/sets produced by `uhk80.scad`.
 - Validate mappings: use `layout.png` for legend placement; `uhk80-keycap-profiles.png` for profile and R checks; `uhk80-layout-iso.png` for per‑key R and U verification.
+- Half‑specific review: use the split left/right layout images to validate only the active half (e.g., right‑side iteration).
 - CLI: regenerate STL and inspect in your viewer.
 - Collision: set `$clearance_check = true;` when testing clearances.
 - Keep reproducible snippets in `examples/` with brief comments.
