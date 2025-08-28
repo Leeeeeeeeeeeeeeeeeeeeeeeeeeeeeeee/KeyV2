@@ -5,12 +5,26 @@ SCAD ?= keys.scad
 IMGSIZE ?= 1600,1200
 CAMERA ?= 0,0,500,0,0,0,0,1,0
 COLORSCHEME ?= Tomorrow
+OPENSCAD ?= openscad
+
+# macOS app auto-detect (override by passing OPENSCAD=...)
+ifneq (,$(wildcard /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD))
+  OPENSCAD := /Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+else ifneq (,$(wildcard /Applications/OpenSCAD-nightly.app/Contents/MacOS/OpenSCAD))
+  OPENSCAD := /Applications/OpenSCAD-nightly.app/Contents/MacOS/OpenSCAD
+else ifneq (,$(wildcard $(HOME)/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD))
+  OPENSCAD := $(HOME)/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+endif
+
+.PHONY: which_openscad
+which_openscad:
+	@echo Using OPENSCAD='$(OPENSCAD)'
 
 .PHONY: test_top test_top_render test_top_clean
 
 # Fast preview image (OpenCSG). Overwrites on each run.
 test_top:
-	openscad -o test_top.png \
+	$(OPENSCAD) -o test_top.png \
 	  --imgsize=$(IMGSIZE) \
 	  --autocenter --viewall \
 	  --projection=orthographic \
@@ -20,7 +34,7 @@ test_top:
 
 # Full CGAL render (F6-equivalent). Slower but accurate geometry.
 test_top_render:
-	openscad -o test_top.png \
+	$(OPENSCAD) -o test_top.png \
 	  --render \
 	  --imgsize=$(IMGSIZE) \
 	  --autocenter --viewall \
@@ -31,4 +45,3 @@ test_top_render:
 
 test_top_clean:
 	rm -f test_top.png
-
