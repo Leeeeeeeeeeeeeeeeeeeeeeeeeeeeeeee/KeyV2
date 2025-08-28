@@ -148,8 +148,8 @@ uhk80_right_layout = [
   [1, 1, "F12", 12, 0, 3],
   // Top-right cluster: add equal ~0.5u gaps around 2u Print
   [1, 2, "Print", 13.5, 0, 3],
-  [1, 1, "ScrLk", 16, 0, 3],
-  [1, 1, "Pause", 17, 0, 3],
+  [1, 1, "ScrLk", 15.5, 0, 3],
+  [1, 1, "Pause", 16.5, 0, 3],
 
   [2, 1, "7", 7, -1, 4],
   [2, 1, "8", 8, -1, 4],
