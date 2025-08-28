@@ -94,8 +94,14 @@ module R5U2_25() { _uhk80_key(5,2.25) children(); }
 module R5U2_75() { _uhk80_key(5,2.75) children(); }
 module R5U6_25() { _uhk80_key(5,6.25) children(); }
 
-// Layout data for UHK80 halves
-// Each entry: [row (R value), unit width (U value), legend, x position, y position, font size]
+// Layout grid for UHK80 halves
+// Key tuple format (units in keyboard units, "u"):
+// [ R, U, legend, x, y, font_size ]
+// - R: row/profile number (1..5; 5 == bottom/R4X)
+// - U: key width (e.g., 1, 1.25, 2)
+// - legend: text rendered on the key (UTF‑8 supported)
+// - x, y: position on unit grid (x right, y down). Decimals allow fine nudges.
+// - font_size: legend size override for that key
 uhk80_left_layout = [
   [1, 1, "Esc", 0, 0, 4],
   [1, 1, "F1", 1, 0, 3],
@@ -146,7 +152,6 @@ uhk80_right_layout = [
   [1, 1, "F10", 10, 0, 3],
   [1, 1, "F11", 11, 0, 3],
   [1, 1, "F12", 12, 0, 3],
-  // Top-right cluster: add equal ~0.5u gaps around 2u Print
   [1, 2, "Print", 13.5, 0, 3],
   [1, 1, "ScrLk", 15, 0, 3],
   [1, 1, "Pause", 16, 0, 3],
@@ -157,7 +162,6 @@ uhk80_right_layout = [
   [2, 1, "0", 10, -1, 4],
   [2, 1, "-", 11, -1, 4],
   [2, 1, "=", 12, -1, 4],
-  // Number row right side: equal ~0.5u gaps around Backspace; shift Ins/Del with ScrLk/Pause
   [1, 2, "Backspace", 13.5, -1, 4],
   [1, 1, "Ins", 15, -1, 4],
   [1, 1, "Del", 16, -1, 4],
@@ -170,7 +174,6 @@ uhk80_right_layout = [
   [3, 1, "[", 12, -2, 4],
   [3, 1, "]", 13, -2, 4],
   [3, 1, "\\", 14, -2, 4],
-  // Navigation column aligned under Ins/Del
   [2, 1, "Home", 15, -2, 4],
   [2, 1, "PgUp", 16, -2, 4],
 
