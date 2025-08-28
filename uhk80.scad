@@ -159,8 +159,8 @@ uhk80_right_layout = [
   [2, 1, "=", 12, -1, 4],
   // Number row right side: equal ~0.5u gaps around Backspace; shift Ins/Del with ScrLk/Pause
   [1, 2, "Backspace", 13.5, -1, 4],
-  [1, 1, "Ins", 16, -1, 4],
-  [1, 1, "Del", 17, -1, 4],
+  [1, 1, "Ins", 15.5, -1, 4],
+  [1, 1, "Del", 16.5, -1, 4],
 
   [3, 1, "Y", 7, -2, 4],
   [3, 1, "U", 8, -2, 4],
@@ -170,9 +170,9 @@ uhk80_right_layout = [
   [3, 1, "[", 12, -2, 4],
   [3, 1, "]", 13, -2, 4],
   [3, 1, "\\", 14, -2, 4],
-  // Navigation column aligned under Ins/Del (shifted right by 1u)
-  [2, 1, "Home", 16, -2, 4],
-  [2, 1, "PgUp", 17, -2, 4],
+  // Navigation column aligned under Ins/Del
+  [2, 1, "Home", 15.5, -2, 4],
+  [2, 1, "PgUp", 16.5, -2, 4],
 
   [4, 1, "H", 7, -3, 4],
   [4, 1, "J", 8, -3, 4],
