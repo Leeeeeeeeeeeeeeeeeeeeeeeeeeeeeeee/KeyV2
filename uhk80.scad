@@ -29,7 +29,11 @@ module _uhk80_key(row, u) {
         extra_depth = $total_depth * ($uhk80_depth_scale - 1),
         $stem_inset = $stem_inset + extra_depth,
         $total_depth = $total_depth * $uhk80_depth_scale,
-        $top_tilt = $top_tilt + $uhk80_tilt_adjust
+        // Flip top tilt direction for bottom row (R4X) and keep others as-is
+        $top_tilt = (row == 5 ? -$top_tilt : $top_tilt) + $uhk80_tilt_adjust,
+        // Make bottom row rounded on top with a slightly larger radius
+        $rounded_key = (row == 5 ? true : $rounded_key),
+        $minkowski_radius = (row == 5 ? 0.5 : $minkowski_radius)
       ) children();
     }
 }
@@ -187,25 +191,26 @@ uhk80_right_layout = [
   [4, 1, "End", 15, -3, 4],
   [4, 1, "PgDn", 16, -3, 4],
 
+  [5, 1, "N", 7.75, -4, 4],
+  [5, 1, "M", 8.75, -4, 4],
+  [5, 1, ",", 9.75, -4, 4],
+  [5, 1, ".", 10.75, -4, 4],
+  [5, 1, "/", 11.75, -4, 4],
+  [5, 1.25, "Shift", 12.85, -4, 4],
+  [5, 1, "\u00AB", 14, -4, 4],
+  [5, 1, "\u2191", 15, -4, 4],
+  [5, 1, "\u00BB", 16, -4, 4],
+
+  [5, 1.5, "Space", 7.5, -5, 4],
+  [5, 1.5, "Super", 9, -5, 4],
+  [5, 1.25, "Alt", 10.35, -5, 4],
+  [5, 1.25, "Fn", 11.6, -5, 4],
+  [5, 1.25, "Ctrl", 12.85, -5, 4],
+
   // Bottom-row navigation: «, ↑, » then ←, ↓, →
-  [5, 1, "\u00AB", 14.75, -5, 4],
-  [5, 1, "\u2191", 15.75, -5, 4],
-  [5, 1, "\u00BB", 16.75, -5, 4],
-  [5, 1, "\u2190", 17.75, -5, 4],
-  [5, 1, "\u2193", 18.75, -5, 4],
-  [5, 1, "\u2192", 19.75, -5, 4],
-
-  [5, 1, "N", 7, -4, 4],
-  [5, 1, "M", 8, -4, 4],
-  [5, 1, ",", 9, -4, 4],
-  [5, 1, ".", 10, -4, 4],
-  [5, 1, "/", 11, -4, 4],
-  [5, 1.25, "Shift", 12, -4, 4],
-
-  [5, 2.25, "Space", 7, -5, 4],
-  [5, 1.25, "Alt", 9.25, -5, 4],
-  [5, 1.25, "Fn", 10.5, -5, 4],
-  [5, 1.25, "Ctrl", 11.75, -5, 4]
+  [5, 1, "\u2190", 14, -5, 4],
+  [5, 1, "\u2193", 15, -5, 4],
+  [5, 1, "\u2192", 16, -5, 4],
 ];
 
 // Render selected half of the UHK80 layout
