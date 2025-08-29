@@ -1,3 +1,5 @@
+use <../functions.scad>
+include <../settings.scad>
 include <../constants.scad>
 // Regular polygon shapes CIRCUMSCRIBE the sphere of diameter $bottom_key_width
 // This is to make tiling them easier, like in the case of hexagonal keycaps etc
@@ -13,7 +15,7 @@ module typewriter_row(n=3, column=0) {
   $inverted_dish = true;
   $stem_inset = -4.5;
   $stem_throw = 5;
-  $dish_depth = 1;
+  $dish_depth = 4;
   $dish_skew_x = 0;
   $dish_skew_y = 0;
   $top_skew = 0;
