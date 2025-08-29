@@ -4,6 +4,13 @@
 
 This library is a keycap and keyset construction library for mechanical keyboards, written in openSCAD.
 
+## CadQuery Port
+
+The `cadquery/uhk80_right.py` script provides a lightweight CadQuery model of the
+right half of the UHK80 keyboard. Open the file in VSCode with the CadQuery
+extension to preview the keycaps or run `python cadquery/uhk80_right.py` to export
+an STL.
+
 Relevant links:
 * Thingiverse: https://www.thingiverse.com/thing:2783650
 * Shapeways: https://www.shapeways.com/designer/rsheldiii/creations
