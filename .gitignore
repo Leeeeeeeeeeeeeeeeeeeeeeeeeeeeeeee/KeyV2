@@ -5,3 +5,50 @@ models/*
 DS_STORE
 .venv*/
 venv*/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+.tox/
+.nox/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.pyre/
+.pytype/
+.ruff_cache/
+.hypothesis/
+.ipynb_checkpoints/
+
+# Virtual environments (common names)
+.venv/
+venv/
+env/
+ENV/
+
+# pyenv
+.python-version
+
+# VS Code
+.vscode/
+
+# macOS
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+._*
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
