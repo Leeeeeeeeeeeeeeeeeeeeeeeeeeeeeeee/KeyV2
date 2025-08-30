@@ -16,7 +16,7 @@ set_port(3939)
 
 with BuildPart() as bp:
     Box(1,1,1)
-    fillet(bp.edges(), radius=0.1)
+    fillet(bp.edges(), radius=0.2)
 
 show(bp)
 
